@@ -1,0 +1,44 @@
+{
+  "computers": [
+    {
+      "type": "стационарный",
+      "inventory_number": "492792",
+      "mac_address": "01:20:03:D1:0D:11",
+      "operating_system": "MS Win 10",
+      "commissioning_date": "01-03-2016",
+      "decommissioning_date": "04-11-2023"
+    },
+    {
+      "type": "ноутбук",
+      "inventory_number": "971773",
+      "mac_address": "01:20:5C:D1:09:11",
+      "operating_system": "Red OS 7",
+      "commissioning_date": "21-07-2022",
+      "decommissioning_date": null
+    },
+    {
+      "type": "моноблок",
+      "inventory_number": "255766",
+      "mac_address": "41:20:03:63:0D:A1",
+      "operating_system": "Red OS 7",
+      "commissioning_date": "16-09-2021",
+      "decommissioning_date": "26-02-2024"
+    },
+    {
+      "type": "стационарный",
+      "inventory_number": "875639",
+      "mac_address": "01:2E:03:84:0D:12",
+      "operating_system": "MS Win 10",
+      "commissioning_date": "04-12-2023",
+      "decommissioning_date": null
+    },
+    {
+      "type": "ноутбук",
+      "inventory_number": "543678",
+      "mac_address": "01:D3:03:1A:60:42",
+      "operating_system": "Red OS 7",
+      "commissioning_date": "27-08-2010",
+      "decommissioning_date": "10-06-2019"
+    }
+  ]
+}
