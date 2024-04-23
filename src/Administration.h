@@ -6,7 +6,6 @@
 #include <vector>
 #include <fstream>
 #include "json.hpp"
-#include <C:/Users/Alison/Desktop/json-3.4.0/include/nlohmann/json.hpp>
 
 class Administration
 {
