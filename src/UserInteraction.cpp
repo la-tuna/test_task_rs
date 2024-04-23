@@ -8,62 +8,62 @@ UserInteraction::UserInteraction(Administration* administration) {
 
 void UserInteraction::loadFromFile() {
     string path;
-    cout << "\nВведите путь к файлу: ";
+    cout << "\nР’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ: ";
     cin >> path;
 
     try {
         administration->loadFromFile(path);
-        cout << "Данные успешно загружены из файла" << endl;
+        cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅС‹ РёР· С„Р°Р№Р»Р°" << endl;
     }
     catch (const invalid_argument& error) {
-        cout << "Ошибка: " << error.what() << endl;
+        cout << "РћС€РёР±РєР°: " << error.what() << endl;
     }
 }
 
 void UserInteraction::writeToFile() {
     string path;
-    cout << "\nВведите абсолютный путь к файлу, включая расширение: ";
-    cout << "\n(если файл не существует, он создастся автоматически)\n";
+    cout << "\nР’РІРµРґРёС‚Рµ Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ, РІРєР»СЋС‡Р°СЏ СЂР°СЃС€РёСЂРµРЅРёРµ: ";
+    cout << "\n(РµСЃР»Рё С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, РѕРЅ СЃРѕР·РґР°СЃС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё)\n";
     cin >> path;
 
     try {
         administration->writeToFile(path);
-        cout << "Данные успешно записаны в файл" << endl;
+        cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РїРёСЃР°РЅС‹ РІ С„Р°Р№Р»" << endl;
     }
     catch (const invalid_argument& error) {
-        cout << "Ошибка: " << error.what() << endl;
+        cout << "РћС€РёР±РєР°: " << error.what() << endl;
     }
 }
 
 void UserInteraction::addComputer() {
     string type, inventoryNumber, macAddress, operatingSystem, commissioningDate, decommissioningDate;
-    cout << "\nВведите тип компьютера: ";
+    cout << "\nР’РІРµРґРёС‚Рµ С‚РёРї РєРѕРјРїСЊСЋС‚РµСЂР°: ";
     cin >> type;
 
-    cout << "Введите инвентарный номер компьютера: ";
+    cout << "Р’РІРµРґРёС‚Рµ РёРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ РєРѕРјРїСЊСЋС‚РµСЂР°: ";
     cin >> inventoryNumber;
     bool validInNum = false;
     while (!validInNum) {
         try {
             if (int(inventoryNumber.length()) != 6 || !all_of(inventoryNumber.begin(), inventoryNumber.end(), isdigit)) {
-                throw invalid_argument("Инвентарный номер должен состоять из 6 цифр");
+                throw invalid_argument("РРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 6 С†РёС„СЂ");
             }
             validInNum = true;
         }
         catch (const invalid_argument& error) {
-            cout << "Ошибка: " << error.what() << endl;
-            cout << "Введите инвентарный номер снова: ";
+            cout << "РћС€РёР±РєР°: " << error.what() << endl;
+            cout << "Р’РІРµРґРёС‚Рµ РёРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ СЃРЅРѕРІР°: ";
             getline(cin >> ws, inventoryNumber);
         }
     }
 
-    cout << "Введите MAC-адрес компьютера: ";
+    cout << "Р’РІРµРґРёС‚Рµ MAC-Р°РґСЂРµСЃ РєРѕРјРїСЊСЋС‚РµСЂР°: ";
     cin >> macAddress;
-    cout << "Введите операционную систему компьютера: ";
+    cout << "Р’РІРµРґРёС‚Рµ РѕРїРµСЂР°С†РёРѕРЅРЅСѓСЋ СЃРёСЃС‚РµРјСѓ РєРѕРјРїСЊСЋС‚РµСЂР°: ";
     cin >> operatingSystem;
-    cout << "Введите дату ввода компьютера в эксплуатацию (ДД-ММ-ГГГГ): ";
+    cout << "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РІРІРѕРґР° РєРѕРјРїСЊСЋС‚РµСЂР° РІ СЌРєСЃРїР»СѓР°С‚Р°С†РёСЋ (Р”Р”-РњРњ-Р“Р“Р“Р“): ";
     cin >> commissioningDate;
-    cout << "Введите дату вывода компьютера из эксплуатации (ДД-ММ-ГГГГ): ";
+    cout << "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РІС‹РІРѕРґР° РєРѕРјРїСЊСЋС‚РµСЂР° РёР· СЌРєСЃРїР»СѓР°С‚Р°С†РёРё (Р”Р”-РњРњ-Р“Р“Р“Р“): ";
     cin >> decommissioningDate;
 
     administration->addComputer(Computer(type, inventoryNumber, macAddress, operatingSystem, commissioningDate, decommissioningDate));
@@ -71,7 +71,7 @@ void UserInteraction::addComputer() {
 
 void UserInteraction::removeComputer() {
     string inventoryNumber;
-    cout << "\nВведите инвентарный номер компьютера для удаления: ";
+    cout << "\nР’РІРµРґРёС‚Рµ РёРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ РєРѕРјРїСЊСЋС‚РµСЂР° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ: ";
     cin >> inventoryNumber;
 
     administration->removeComputer(inventoryNumber);
@@ -79,7 +79,7 @@ void UserInteraction::removeComputer() {
 
 void UserInteraction::updateComputer() {
     string inventoryNumber, type, macAddress, operatingSystem, commissioningDate, decommissioningDate;
-    cout << "\nВведите инвентарный номер компьютера для обновления: ";
+    cout << "\nР’РІРµРґРёС‚Рµ РёРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ РєРѕРјРїСЊСЋС‚РµСЂР° РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ: ";
     cin >> inventoryNumber;
 
     Computer* computer = administration->findComputer(inventoryNumber);
@@ -87,98 +87,98 @@ void UserInteraction::updateComputer() {
     while (!validNum) {
         try {
             if (computer == nullptr) {
-                throw invalid_argument("Компьютер с инвентарным номером " + inventoryNumber + " не найден");
+                throw invalid_argument("РљРѕРјРїСЊСЋС‚РµСЂ СЃ РёРЅРІРµРЅС‚Р°СЂРЅС‹Рј РЅРѕРјРµСЂРѕРј " + inventoryNumber + " РЅРµ РЅР°Р№РґРµРЅ");
             }
             validNum = true;
         }
         catch (const invalid_argument& error) {
-            cout << "Ошибка: " << error.what() << endl;
-            cout << "Введите инвентарный номер снова: ";
+            cout << "РћС€РёР±РєР°: " << error.what() << endl;
+            cout << "Р’РІРµРґРёС‚Рµ РёРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ СЃРЅРѕРІР°: ";
             getline(cin >> ws, inventoryNumber);
             computer = administration->findComputer(inventoryNumber);
         }
     }
 
-    // список доступных свойств для обновления
-    vector<string> properties = { "Тип", "MAC-адрес", "Операционная система", "Дата ввода в эксплуатацию", "Дата вывода из эксплуатации" };
+    // СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… СЃРІРѕР№СЃС‚РІ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
+    vector<string> properties = { "РўРёРї", "MAC-Р°РґСЂРµСЃ", "РћРїРµСЂР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР°", "Р”Р°С‚Р° РІРІРѕРґР° РІ СЌРєСЃРїР»СѓР°С‚Р°С†РёСЋ", "Р”Р°С‚Р° РІС‹РІРѕРґР° РёР· СЌРєСЃРїР»СѓР°С‚Р°С†РёРё" };
 
-    // выбор свойства для обновления
-    cout << "\nВыберите свойство, которое хотите обновить:\n";
+    // РІС‹Р±РѕСЂ СЃРІРѕР№СЃС‚РІР° РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
+    cout << "\nР’С‹Р±РµСЂРёС‚Рµ СЃРІРѕР№СЃС‚РІРѕ, РєРѕС‚РѕСЂРѕРµ С…РѕС‚РёС‚Рµ РѕР±РЅРѕРІРёС‚СЊ:\n";
     for (int i = 0; i < properties.size(); i++) {
         cout << i + 1 << ". " << properties[i] << endl;
     }
-    cout << "Введите номер свойства: ";
+    cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃРІРѕР№СЃС‚РІР°: ";
     int choice;
     cin >> choice;
 
     if (choice < 1 || choice > properties.size()) {
-        cout << "\nНеверный выбор. Выберите свойство из списка" << endl;
+        cout << "\nРќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ. Р’С‹Р±РµСЂРёС‚Рµ СЃРІРѕР№СЃС‚РІРѕ РёР· СЃРїРёСЃРєР°" << endl;
         return;
     }
 
     string propertyToUpdate = properties[choice - 1];
     string newValue;
-    cout << "Введите новое значение для свойства " << propertyToUpdate << ": ";
+    cout << "Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ СЃРІРѕР№СЃС‚РІР° " << propertyToUpdate << ": ";
     getline(cin >> ws, newValue);
 
-    // ввод значения выбранного свойства
-    if (propertyToUpdate == "Тип") {
+    // РІРІРѕРґ Р·РЅР°С‡РµРЅРёСЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЃРІРѕР№СЃС‚РІР°
+    if (propertyToUpdate == "РўРёРї") {
 
-        // проверка введенного типа компьютера
+        // РїСЂРѕРІРµСЂРєР° РІРІРµРґРµРЅРЅРѕРіРѕ С‚РёРїР° РєРѕРјРїСЊСЋС‚РµСЂР°
         bool validType = false;
         while (!validType) {
             try {
-                if (!newValue.empty() && newValue != "стационарный" && newValue != "ноутбук" && newValue != "моноблок") {
-                    throw invalid_argument("Неверный тип компьютера. Допустимые значения: стационарный, ноутбук, моноблок");
+                if (!newValue.empty() && newValue != "СЃС‚Р°С†РёРѕРЅР°СЂРЅС‹Р№" && newValue != "РЅРѕСѓС‚Р±СѓРє" && newValue != "РјРѕРЅРѕР±Р»РѕРє") {
+                    throw invalid_argument("РќРµРІРµСЂРЅС‹Р№ С‚РёРї РєРѕРјРїСЊСЋС‚РµСЂР°. Р”РѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ: СЃС‚Р°С†РёРѕРЅР°СЂРЅС‹Р№, РЅРѕСѓС‚Р±СѓРє, РјРѕРЅРѕР±Р»РѕРє");
                 }
                 validType = true;
             }
             catch (const invalid_argument& error) {
-                cout << "Ошибка: " << error.what() << endl;
-                cout << "Введите тип компьютера снова: ";
+                cout << "РћС€РёР±РєР°: " << error.what() << endl;
+                cout << "Р’РІРµРґРёС‚Рµ С‚РёРї РєРѕРјРїСЊСЋС‚РµСЂР° СЃРЅРѕРІР°: ";
                 getline(cin >> ws, newValue);
             }
         }
 
         computer->type = newValue;
-        cout << "Свойство успешно обновлено";
+        cout << "РЎРІРѕР№СЃС‚РІРѕ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅРѕ";
     }
-    else if (propertyToUpdate == "MAC-адрес") {
+    else if (propertyToUpdate == "MAC-Р°РґСЂРµСЃ") {
         computer->macAddress = newValue;
-        cout << "Свойство успешно обновлено";
+        cout << "РЎРІРѕР№СЃС‚РІРѕ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅРѕ";
     }
-    else if (propertyToUpdate == "Операционная система") {
+    else if (propertyToUpdate == "РћРїРµСЂР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР°") {
         computer->operatingSystem = newValue;
-        cout << "Свойство успешно обновлено";
+        cout << "РЎРІРѕР№СЃС‚РІРѕ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅРѕ";
     }
-    else if (propertyToUpdate == "Дата ввода в эксплуатацию") {
+    else if (propertyToUpdate == "Р”Р°С‚Р° РІРІРѕРґР° РІ СЌРєСЃРїР»СѓР°С‚Р°С†РёСЋ") {
         computer->commissioningDate = newValue;
-        cout << "Свойство успешно обновлено";
+        cout << "РЎРІРѕР№СЃС‚РІРѕ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅРѕ";
     }
-    else if (propertyToUpdate == "Дата вывода из эксплуатации") {
+    else if (propertyToUpdate == "Р”Р°С‚Р° РІС‹РІРѕРґР° РёР· СЌРєСЃРїР»СѓР°С‚Р°С†РёРё") {
         computer->decommissioningDate = newValue;
-        cout << "Свойство успешно обновлено";
+        cout << "РЎРІРѕР№СЃС‚РІРѕ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅРѕ";
     }
 }
 
 void UserInteraction::findComputer() {
     string inventoryNumber;
-    cout << "\nВведите инвентарный номер компьютера для вывода данных о нем: ";
+    cout << "\nР’РІРµРґРёС‚Рµ РёРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ РєРѕРјРїСЊСЋС‚РµСЂР° РґР»СЏ РІС‹РІРѕРґР° РґР°РЅРЅС‹С… Рѕ РЅРµРј: ";
     cin >> inventoryNumber;
 
     Computer* computer = administration->findComputer(inventoryNumber);
     if (computer == nullptr) {
-        cout << "\nКомпьютер не найден" << endl;
+        cout << "\nРљРѕРјРїСЊСЋС‚РµСЂ РЅРµ РЅР°Р№РґРµРЅ" << endl;
     }
     else {
-        cout << left << setw(20) << "Тип" << setw(25) << "Инвентарный номер" << setw(25) << "MAC-адрес" << setw(25) << "Операционная система" << setw(20) << "Дата ввода в эксп." << setw(20) << "Дата вывода из эксп." << endl;
+        cout << left << setw(20) << "РўРёРї" << setw(25) << "РРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ" << setw(25) << "MAC-Р°РґСЂРµСЃ" << setw(25) << "РћРїРµСЂР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР°" << setw(20) << "Р”Р°С‚Р° РІРІРѕРґР° РІ СЌРєСЃРї." << setw(20) << "Р”Р°С‚Р° РІС‹РІРѕРґР° РёР· СЌРєСЃРї." << endl;
         cout << left <<  setw(20) << computer->type << setw(25) << computer->inventoryNumber << setw(25) << computer->macAddress << setw(25) << computer->operatingSystem << setw(20) << computer->commissioningDate << setw(20) << computer->decommissioningDate << endl;
     }
 }
 
 void UserInteraction::printComputers() {
-    cout << "\nСписок компьютеров:\n";
-    cout << left << setw(20) << "Тип" << setw(25) << "Инвентарный номер" << setw(25) << "MAC-адрес" << setw(25) << "Операционная система" << setw(20) << "Дата ввода в эксп." << setw(20) << "Дата вывода из эксп." << endl;
+    cout << "\nРЎРїРёСЃРѕРє РєРѕРјРїСЊСЋС‚РµСЂРѕРІ:\n";
+    cout << left << setw(20) << "РўРёРї" << setw(25) << "РРЅРІРµРЅС‚Р°СЂРЅС‹Р№ РЅРѕРјРµСЂ" << setw(25) << "MAC-Р°РґСЂРµСЃ" << setw(25) << "РћРїРµСЂР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР°" << setw(20) << "Р”Р°С‚Р° РІРІРѕРґР° РІ СЌРєСЃРї." << setw(20) << "Р”Р°С‚Р° РІС‹РІРѕРґР° РёР· СЌРєСЃРї." << endl;
     int i = 1;
     for (auto& computer : administration->computers) {
         cout << left << setw(4) << i++ << setw(20) << computer.type << setw(25) << computer.inventoryNumber << setw(25) << computer.macAddress << setw(25) << computer.operatingSystem << setw(20) << computer.commissioningDate << setw(20) << computer.decommissioningDate << endl;
@@ -188,21 +188,21 @@ void UserInteraction::printComputers() {
 void UserInteraction::start() {
     int choice;
     do {
-        cout << "\n\n1. Экспортировать данные из файла" << endl;
-        cout << "2. Добавить компьютер" << endl;
-        cout << "3. Обновить компьютер" << endl;
-        cout << "4. Удалить компьютер" << endl;
-        cout << "5. Найти компьютер" << endl;
-        cout << "6. Получить полный список компьютеров" << endl;
-        cout << "7. Импортировать данные в файл" << endl;
-        cout << "8. Завершить и выйти" << endl;
-        cout << "Введите свой выбор: ";
+        cout << "\n\n1. Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р°" << endl;
+        cout << "2. Р”РѕР±Р°РІРёС‚СЊ РєРѕРјРїСЊСЋС‚РµСЂ" << endl;
+        cout << "3. РћР±РЅРѕРІРёС‚СЊ РєРѕРјРїСЊСЋС‚РµСЂ" << endl;
+        cout << "4. РЈРґР°Р»РёС‚СЊ РєРѕРјРїСЊСЋС‚РµСЂ" << endl;
+        cout << "5. РќР°Р№С‚Рё РєРѕРјРїСЊСЋС‚РµСЂ" << endl;
+        cout << "6. РџРѕР»СѓС‡РёС‚СЊ РїРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє РєРѕРјРїСЊСЋС‚РµСЂРѕРІ" << endl;
+        cout << "7. РРјРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ РІ С„Р°Р№Р»" << endl;
+        cout << "8. Р—Р°РІРµСЂС€РёС‚СЊ Рё РІС‹Р№С‚Рё" << endl;
+        cout << "Р’РІРµРґРёС‚Рµ СЃРІРѕР№ РІС‹Р±РѕСЂ: ";
 
         while (!(cin >> choice)) {
-            cout << "Ошибка: ввод должен быть числом" << endl;
+            cout << "РћС€РёР±РєР°: РІРІРѕРґ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С‡РёСЃР»РѕРј" << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Сделайте свой выбор снова: ";
+            cout << "РЎРґРµР»Р°Р№С‚Рµ СЃРІРѕР№ РІС‹Р±РѕСЂ СЃРЅРѕРІР°: ";
         }
 
         switch (choice) {
