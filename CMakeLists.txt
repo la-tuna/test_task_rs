@@ -14,7 +14,7 @@ set(CMAKE_MODULE_PATH
         ${CMAKE_MODULE_PATH}
         ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-SET(OPENCV_PROJECT_PATH CACHE STRING "Path to nlohmann/json directory.")
+SET(JSON_PROJECT_PATH CACHE STRING "Path to nlohmann/json directory.")
 LIST(APPEND CMAKE_PREFIX_PATH ${JSON_PROJECT_PATH})
 
 find_package(json REQUIRED)
